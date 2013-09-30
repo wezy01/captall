@@ -1,0 +1,7 @@
+/**
+ * jQuery Captall - Add a caption to everything - http://www.captall.be
+ * ---------------------------------------------------------------------------------
+ *
+ * 1.0 Initial release
+ *
+ */
