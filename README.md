@@ -1,4 +1,3 @@
-/**
  * jQuery Captall - Add a caption to everything - http://www.captall.be
  * ---------------------------------------------------------------------------------
  *
@@ -13,4 +12,10 @@
  * @license         opensource.org/licenses/mit-license.php MIT
  * @package         jQuery Plugins
  *
- */
+
+Default usage
+-------------
+
+$('#image').captall();
+
+Goto www.captall.be to view all the options and examples
