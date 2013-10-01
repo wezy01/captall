@@ -1,6 +1,5 @@
 {
   "name": "captall",
-  "version": "1.1",
   "title": "Captall",
   "description": "A jQuery plugin for adding a caption to any DOM element, packed with a massive amount of options so it can be adjusted to everyone's needs.",
   "keywords": [
@@ -8,14 +7,21 @@
     "plugin",
     "caption",
     "options",
-    "callback"
+    "callback",
+    "easing"
   ],
-  "homepage": "https://www.captall.be",
+  "version": "1.1",
   "author": {
     "name": "Erwin Van Wesemael",
     "url": "http://www.wezy.be"
   },
-  "bugs": "https://github.com/jstayton/jquery-manifest/issues",
+  "maintainers": [
+		{
+			"name": "Erwin Van Wesemael",
+			"email": "info@wezy.be",
+			"url": "http://www.wezy.be/"
+		}
+	],
   "licenses": [
     {
       "type": "MIT",
@@ -26,6 +32,8 @@
     "jquery": ">=1.5",
     "easing": ">=1.3"
   },
+  "bugs": "https://github.com/jstayton/jquery-manifest/issues",
+  "homepage": "https://www.captall.be",
   "docs": "http://www.captall.be/options.php",
   "demo": "http://www.captall.be/examples.php"
 }
