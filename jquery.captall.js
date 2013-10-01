@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version         0.1
+ * @version         1.1
  * @since           09-29-2013
  * @author          Erwin Van Wesemael
  * @documentation   www.captall.be
@@ -17,12 +17,12 @@
 
 ;(function($) {
 	"use strict";
+	var self = $(this);
 	
-	
-	$.fn.captall = function(settings){
+	$.fn.captall = function(settings, callback){
 		
 		var options = $.extend({}, $.fn.captall.defaults, settings);
-
+		
 		if (this.length === 0) {
 			debug('Invalid selector!');
 			return;
@@ -31,7 +31,7 @@
 				$.fn.captall.apply($(this), [settings]);
 			});
 		}
-
+	
 		if(options.padding !== ''){
 			var p = options.padding;
 			if(p.length === 4){
@@ -93,6 +93,16 @@
 			options.inTime = options.time;
 			options.outTime = options.time;
 		}
+		
+		if(options.easing !== ''){
+			options.easingIn = options.easing;
+			options.easingOut = options.easing;
+		}
+		
+		if(options.delay !== 0){
+			options.delayShow = options.delay;
+			options.delayHide = options.delay;
+		}
 
 		var name		= $this.attr('name'),
 			$caption	= $('<div class="' + options.cCaption + '"/>'),
@@ -106,7 +116,6 @@
 
 		var $image		= $elem.wrap('<div class="' + options.cImage + '"/>').parent(),
 			$wrapper	= $image.wrap('<div class="' + options.cWrapper + '"/>').parent();
-
 		
 		$wrapper.css({
 			height:		$this.height(),
@@ -163,10 +172,6 @@
 			debug('Invalid top value!');
 			return;
 		}
-
-		function onComplete(){
-			alert('gedaan');
-		}
 		
 		var top = 0;
 		var left = 0;
@@ -187,8 +192,6 @@
 			left = (this.width() - fullWidth) / 2;
 		}else if(!isNaN(options.left)){
 			left = options.left;
-			//start_left = left;
-			//end_left = left;
 		}else{
 			debug('Invalid top value!');
 			return;
@@ -252,15 +255,6 @@
 				left: 	start_left + 'px'
 			});
 			
-			$wrapper.hover(
-				function() {
-					$caption.animate({ top: start_top, left: start_left }, { duration: options.inTime, queue: false });
-				},
-				function() {
-					$caption.animate({ top: end_top, left: end_left }, { duration: options.outTime, queue: false });
-				}
-			);
-			
 			if(options.slideFrom === 'left' || options.slideFrom === 'lefttop'){
 				end_left = - fullWidth;
 				start_top =  options.top;
@@ -289,12 +283,13 @@
 				top: 		end_top + 'px',
 				left: 		end_left + 'px'
 			});
+			
 			$wrapper.hover(
 				function() {
-					$caption.animate({ top: start_top, left: start_left }, { duration: options.inTime, queue: false });
+					$caption.delay(options.delayShow).animate({ top: start_top, left: start_left }, { duration: options.inTime, easing: options.easingIn, queue: true });
 				},
 				function() {
-					$caption.animate({ top: end_top, left: end_left }, { duration: options.outTime, queue: false });
+					$caption.stop().delay(options.delayHide).animate({ top: end_top, left: end_left }, { duration: options.outTime, easing: options.easingOut, queue: true });
 				}
 			);
 		}else if (options.animation === 'fade') {
@@ -306,10 +301,10 @@
 			
 			$wrapper.hover(
 				function() {
-					$caption.stop().animate({ opacity: options.opacity }, options.inTime);
+					$caption.stop().delay(options.delayShow).animate({ opacity: options.opacity }, {duration: options.inTime});
 				},
 	    		function() {
-					$caption.stop().animate({ opacity: 0 }, options.outTime);
+					$caption.stop().delay(options.delayHide).animate({ opacity: 0 }, {duration: options.outTime});
 				}
 	    	);
 		} else if (options.animation === 'fixed') {
@@ -317,10 +312,19 @@
 				top:		top + 'px',
 				left:		left + 'px'
 			});
+						
+			if(options.fadeOutAfter !== '') {
+				$caption.delay(options.fadeOutAfter).animate({ opacity: 0 }, options.outTime);
+			}
+			
 		} else {
 			debug($this.attr('id') + ': invalid animation!');
 		}
 
+		function setCaption(text){
+			$caption.html(options.caption);
+		}
+		
 		return $this;
 	};
 
@@ -329,6 +333,10 @@
 			window.console.log(message);
 		}
 	}
+	
+	$.fn.captall.caption = function(txt){
+		self.setCaption(txt);
+	};
 
 	$.fn.captall.defaults = {
 		caption:			'',
@@ -355,8 +363,13 @@
 		fontColor:			'#000',
 		fontsize:			'16px',
 		textAlign:			'left',
-		disappearAfter:		'',
-		onComplete:			null
+		delay:				0, //slide & fade
+		delayShow:			0,
+		delayHide:			0, //fixed
+		fadeOutAfter:		'',
+		easing:				'',
+		easingIn:			'',
+		easingOut:			''
 	};
 	
 	
