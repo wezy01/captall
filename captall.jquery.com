@@ -1,6 +1,6 @@
 {
   "name": "captall",
-  "version": "1.0",
+  "version": "1.1",
   "title": "Captall",
   "description": "A jQuery plugin for adding a caption to any DOM element, packed with a massive amount of options so it can be adjusted to everyone's needs.",
   "keywords": [
@@ -23,7 +23,8 @@
     }
   ],
   "dependencies": {
-    "jquery": ">=1.5"
+    "jquery": ">=1.5",
+    "easing": ">=1.3"
   },
   "docs": "http://www.captall.be/options.php",
   "demo": "http://www.captall.be/examples.php"
