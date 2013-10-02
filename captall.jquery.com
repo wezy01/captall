@@ -10,7 +10,7 @@
     "callback",
     "easing"
   ],
-  "version": "1.1",
+  "version": "1.1.1",
   "author": {
     "name": "Erwin Van Wesemael",
     "url": "http://www.wezy.be"
