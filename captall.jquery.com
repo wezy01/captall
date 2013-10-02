@@ -1,5 +1,5 @@
 {
-  "name": "captall",
+  "name": "captall.jquery.com",
   "title": "Captall",
   "description": "A jQuery plugin for adding a caption to any DOM element, packed with a massive amount of options so it can be adjusted to everyone's needs.",
   "keywords": [
