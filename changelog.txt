@@ -2,6 +2,8 @@
  * jQuery Captall - Add a caption to everything - http://www.captall.be
  * ---------------------------------------------------------------------------------
  *
- * 1.0 Initial release
+ * 1.1.1	changed version number to semver
+ * 1.1		Added delay, delayIn, delayOut, easing, easingIn, easingOut, fadeOutAfter
+ * 1.0 		Initial release
  *
  */
