@@ -5,7 +5,7 @@
  *
  * Licensed under The MIT License
  *
- * @version         1.1.1
+ * @version         1.1.2
  * @since           09-29-2013
  * @author          Erwin Van Wesemael
  * @documentation   www.captall.be
