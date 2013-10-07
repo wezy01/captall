@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version         1.1.2
+ * @version         1.0.1
  * @since           09-29-2013
  * @author          Erwin Van Wesemael
  * @documentation   www.captall.be
@@ -197,7 +197,7 @@
 			return;
 		}
 
-		if (options.animation === 'slide') {
+		if (options.animation === 'slide' || options.animation === 'float') {
 			if(options.top === ''){
 				if(options.slideTo === 'bottom'){
 					start_top = this.height() - options.height - totalVerPadding;
@@ -284,12 +284,19 @@
 				left: 		end_left + 'px'
 			});
 			
+			var op_out = options.opacity;
+			if(options.animation === 'float'){
+				$caption.css('opacity', 0)
+				$caption.animate({ opacity: 0 }, 0);		
+				op_out = 0;
+			}
+			
 			$wrapper.hover(
-				function() {
-					$caption.delay(options.delayShow).animate({ top: start_top, left: start_left }, { duration: options.inTime, easing: options.easingIn, queue: true });
+				function() {	
+					$caption.delay(options.showDelay).animate({ top: start_top, left: start_left, opacity: options.opacity }, { duration: options.inTime, easing: options.easingIn , queue: true });
 				},
 				function() {
-					$caption.stop().delay(options.delayHide).animate({ top: end_top, left: end_left }, { duration: options.outTime, easing: options.easingOut, queue: true });
+					$caption.stop().delay(options.hideDelay).animate({ top: end_top, left: end_left, opacity: op_out }, { duration: options.outTime, easing: options.easingOut, queue: true });
 				}
 			);
 		}else if (options.animation === 'fade') {
