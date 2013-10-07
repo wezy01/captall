@@ -2,7 +2,8 @@
  * jQuery Captall - Add a caption to everything - http://www.captall.be
  * ---------------------------------------------------------------------------------
  *
- * 
- * 1.0 		Initial release
+ * 1.0.1    Added new animation type: float
+ *          Combines slide and fade in/out
+ * 1.0.0 		Initial release
  *
  */
